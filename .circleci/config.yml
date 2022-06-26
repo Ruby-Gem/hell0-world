@@ -18,6 +18,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - run: echo world
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -26,3 +27,12 @@ workflows:
     jobs:
       - print_hello
       - print_world
+workflow:
+  test-env-vars:
+    jobs:
+      build:
+      docker:
+        - image: cigm/base:stable
+      steps:
+        - checkout
+        - run: echo MY_ENV_VAR
